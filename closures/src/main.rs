@@ -1,5 +1,23 @@
 use std::mem;
 
+fn apply<F>(f: F)
+where 
+    F: FnOnce() {
+        f();
+}
+
+fn apply_to_3<F>(f: F) -> i32
+where 
+    F: Fn(i32) -> i32 {
+        f(3)
+}
+
+fn fn_apply<F>(f: F)
+where
+    F: Fn() {
+        f();
+}
+
 fn main() {
     let outer_variable = 42;
     let closure_annotated = | i: i32 | -> i32 { i + outer_variable };
@@ -39,4 +57,22 @@ fn main() {
     let haystack = vec![1,2,3];
     let contains = move |needle| haystack.contains(needle);
     println!("Haystack contains 2 : {}",contains(&2));
+
+    let greeting = "Hello";
+    let mut farewell = "goodbye".to_owned();
+
+    let diary = || {
+        println!("I said {}",greeting);
+        farewell.push_str("!!!");
+        println!("Then I screamed {}",farewell);
+        println!("Now I can sleep!");
+        drop(farewell);
+    };
+    apply(diary);
+    let double = |x| x*2;
+    println!("3 doubled is {}",apply_to_3(double));
+
+    let x = 8;
+    let printer = || println!("x: {}",x);
+    fn_apply(printer);
 }
