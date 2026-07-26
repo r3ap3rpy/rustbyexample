@@ -3,4 +3,9 @@ name = "configuration"
 version = "0.1.0"
 edition = "2024"
 
+
+[features]
+default = ["custom_condition"]
+custom_condition = []
+
 [dependencies]
