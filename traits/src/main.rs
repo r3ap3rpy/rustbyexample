@@ -1,3 +1,4 @@
+#[derive(Debug)]
 struct Sheep { naked: bool, name: &'static str }
 
 trait Animal {
