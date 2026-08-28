@@ -11,10 +11,14 @@ fn try_division(dividend: f64, divisor: f64) {
         Some(quotient) => println!("{} / {} = {}",dividend,divisor,quotient),
     }
 }
-fn main() {
+fn main() -> Result<(),String>{
     match checked_division(11.0, 22.0) {
         Some(n) => println!("The result was: {}",n),
         None => println!("You cannot divide by zero!"),
     }
     try_division(10.0, 2.0);
+
+    let result = checked_division(11.0, 0.0).unwrap_or(-1.0);
+    println!("result was: {}",result);
+    Ok(())
 }
