@@ -1,0 +1,11 @@
+
+fn main() {
+    let pangram: &'static str = "the quick brown fox jumps over the lazy dog";
+    println!("{}",pangram);
+    for word in pangram.split_whitespace().rev() {
+        println!("{}",word);
+    }
+    let mut chars = pangram.chars().collect();
+    chars.sort();
+    chars.dedup();
+}
