@@ -1,0 +1,10 @@
+fn division(x: i32, y: i32) -> i32 {
+    if y == 0 {
+        panic!("Cannot divide by zero!");
+    } else {
+        x / y
+    }
+}
+fn main() {
+    
+}
