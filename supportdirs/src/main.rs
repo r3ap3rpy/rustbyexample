@@ -25,6 +25,9 @@ fn verify_app_folder_state(exe_path: &PathBuf) -> Result<Folders,Box<dyn std::er
 
 
 fn main() {
+    // choose this, because if current_dir is used and the cargo run command is ran
+    // the relative location is the current folder where the cargo run was issued not where the
+    // binary lives
     let executable_path = current_exe().expect("Cannot access binary!");
 
     let folders = match verify_app_folder_state(&executable_path) {
