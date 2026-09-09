@@ -87,12 +87,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // the relative location is the current folder where the cargo run was issued not where the
     // binary lives
     let executable_path = current_exe().expect("Cannot access binary!");
-    let mut logfile_name = executable_path
+    let logfile_name = executable_path
+        .with_extension("log")
         .file_name()
         .unwrap()
         .to_string_lossy()
         .into_owned();
-    logfile_name.push_str(".log");
     let folders = match verify_app_folder_state(&executable_path) {
         Ok(folders) => folders,
         Err(e) => panic!("Folder state is incomplete: {}", e),
