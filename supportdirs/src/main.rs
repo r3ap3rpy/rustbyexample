@@ -1,17 +1,11 @@
 use std::env::{current_exe};
 use std::path::{PathBuf};
 use std::fs::create_dir_all;
-use std::fmt;
 
+#[derive(Debug)]
 struct Folders {
     logs: PathBuf,
     config: PathBuf,
-}
-
-impl fmt::Debug for Folders {
-    fn fmt(&self, f: &mut fmt::Formatter)->fmt::Result{
-        f.debug_struct("Folders").field("logs",&self.logs).field("config",&self.config).finish()
-    }
 }
 
 fn verify_app_folder_state(exe_path: &PathBuf) -> Result<Folders,Box<dyn std::error::Error>> {
